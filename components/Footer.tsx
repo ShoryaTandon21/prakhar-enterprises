@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,9 +9,20 @@ export default function Footer() {
       <Container className="py-10">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <p className="font-[var(--font-manrope)] text-base font-extrabold text-energy-ink">
-              {site.name}
-            </p>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl bg-white shadow-card ring-1 ring-slate-200">
+                <Image
+                  src="/logo.jpg"
+                  alt="Prakhar Enterprises logo"
+                  width={72}
+                  height={72}
+                  className="h-9 w-9 object-contain"
+                />
+              </span>
+              <p className="font-[var(--font-manrope)] text-base font-extrabold text-energy-ink">
+                {site.name}
+              </p>
+            </div>
             <p className="mt-3 text-sm leading-relaxed text-slate-700">{site.description}</p>
           </div>
           <div>
@@ -59,4 +71,3 @@ export default function Footer() {
     </footer>
   );
 }
-

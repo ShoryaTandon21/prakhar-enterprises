@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
+import Image from "next/image";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -15,11 +16,15 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Link href="/" className="group inline-flex items-center gap-2">
-          <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-xl bg-energy-blue text-white shadow-glow">
-            <span className="absolute inset-0 overflow-hidden rounded-xl">
-              <span className="absolute -left-8 top-0 h-full w-8 rotate-12 bg-white/25 blur-sm motion-safe:animate-shine" />
-            </span>
-            <span className="relative text-base font-black">PE</span>
+          <span className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl bg-white shadow-card ring-1 ring-slate-200">
+            <Image
+              src="/logo.jpg"
+              alt="Prakhar Enterprises logo"
+              width={72}
+              height={72}
+              className="h-9 w-9 object-contain"
+              priority
+            />
           </span>
           <span className="font-[var(--font-manrope)] text-sm font-extrabold tracking-tight text-energy-ink sm:text-base">
             Prakhar Enterprises
@@ -64,4 +69,3 @@ export default function Navbar() {
     </header>
   );
 }
-
