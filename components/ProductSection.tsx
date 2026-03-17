@@ -3,7 +3,7 @@ import Icon from "@/components/Icon";
 import type { ProductSectionData } from "@/lib/products";
 
 export default function ProductSection({ section }: { section: ProductSectionData }) {
-  const fit = section.image.fit ?? "contain";
+  const primaryFit = section.images[0]?.fit ?? "contain";
   return (
     <article
       id={section.id}
@@ -15,15 +15,31 @@ export default function ProductSection({ section }: { section: ProductSectionDat
             <div className="absolute -left-16 -top-16 h-52 w-52 rounded-full bg-energy-blue/10 blur-2xl" />
             <div className="absolute -right-16 -bottom-16 h-52 w-52 rounded-full bg-energy-yellow/25 blur-2xl" />
           </div>
-          <div className="relative aspect-[16/11] w-full">
-            <Image
-              src={section.image.src}
-              alt={section.image.alt}
-              fill
-              sizes="(min-width: 1024px) 520px, 100vw"
-              className={`rounded-2xl ${fit === "cover" ? "object-cover" : "object-contain"}`}
-            />
-          </div>
+          {section.images.length <= 1 ? (
+            <div className="relative aspect-[16/11] w-full">
+              <Image
+                src={section.images[0]?.src ?? "/images/placeholder.png"}
+                alt={section.images[0]?.alt ?? section.title}
+                fill
+                sizes="(min-width: 1024px) 520px, 100vw"
+                className={`rounded-2xl ${primaryFit === "cover" ? "object-cover" : "object-contain"}`}
+              />
+            </div>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2">
+              {section.images.slice(0, 2).map((img) => (
+                <div key={img.src} className="relative aspect-[16/11] w-full">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(min-width: 1024px) 260px, 50vw"
+                    className={`rounded-2xl ${img.fit === "cover" ? "object-cover" : "object-contain"}`}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div>

@@ -58,7 +58,18 @@ export default function Hero() {
             <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-card">
               <div className="bg-gradient-to-r from-energy-blue/10 via-white to-energy-yellow/20 p-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-semibold text-slate-700">Prakhar Enterprises</p>
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-md bg-white ring-1 ring-slate-200">
+                      <Image
+                        src="/logo.jpg"
+                        alt="Prakhar Enterprises logo"
+                        width={48}
+                        height={48}
+                        className="h-6 w-6 object-contain"
+                      />
+                    </span>
+                    <p className="text-xs font-semibold text-slate-700">Prakhar Enterprises</p>
+                  </div>
                   <span className="inline-flex items-center gap-2 text-xs font-semibold text-energy-blue">
                     <span className="h-2 w-2 rounded-full bg-energy-yellow" />
                     Energy-ready
