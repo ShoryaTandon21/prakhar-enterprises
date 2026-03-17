@@ -1,0 +1,62 @@
+import Container from "@/components/Container";
+import Link from "next/link";
+import { site } from "@/lib/site";
+
+export default function Footer() {
+  return (
+    <footer className="border-t border-slate-200 bg-white">
+      <Container className="py-10">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div>
+            <p className="font-[var(--font-manrope)] text-base font-extrabold text-energy-ink">
+              {site.name}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-700">{site.description}</p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-energy-ink">Quick Links</p>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li>
+                <Link className="text-slate-700 hover:text-energy-ink" href="/products-services">
+                  Products & Services
+                </Link>
+              </li>
+              <li>
+                <Link className="text-slate-700 hover:text-energy-ink" href="/solar-solutions">
+                  Solar Solutions
+                </Link>
+              </li>
+              <li>
+                <Link className="text-slate-700 hover:text-energy-ink" href="/contact">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-energy-ink">Contact</p>
+            <p className="mt-3 text-sm text-slate-700">
+              Akhil Kumar —{" "}
+              <a className="text-energy-blue hover:underline" href={`tel:${site.phoneAkhil}`}>
+                {site.phoneAkhil}
+              </a>
+              <br />
+              Anuj Tandon —{" "}
+              <a className="text-energy-blue hover:underline" href={`tel:${site.phoneAnuj}`}>
+                {site.phoneAnuj}
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-2 border-t border-slate-200 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
+          <p>Authorized products • Government-approved solar</p>
+        </div>
+      </Container>
+    </footer>
+  );
+}
+
