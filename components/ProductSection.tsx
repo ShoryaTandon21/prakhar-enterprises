@@ -3,6 +3,7 @@ import Icon from "@/components/Icon";
 import type { ProductSectionData } from "@/lib/products";
 
 export default function ProductSection({ section }: { section: ProductSectionData }) {
+  const fit = section.image.fit ?? "contain";
   return (
     <article
       id={section.id}
@@ -14,13 +15,15 @@ export default function ProductSection({ section }: { section: ProductSectionDat
             <div className="absolute -left-16 -top-16 h-52 w-52 rounded-full bg-energy-blue/10 blur-2xl" />
             <div className="absolute -right-16 -bottom-16 h-52 w-52 rounded-full bg-energy-yellow/25 blur-2xl" />
           </div>
-          <Image
-            src={section.image.src}
-            alt={section.image.alt}
-            width={920}
-            height={640}
-            className="relative h-auto w-full"
-          />
+          <div className="relative aspect-[16/11] w-full">
+            <Image
+              src={section.image.src}
+              alt={section.image.alt}
+              fill
+              sizes="(min-width: 1024px) 520px, 100vw"
+              className={`rounded-2xl ${fit === "cover" ? "object-cover" : "object-contain"}`}
+            />
+          </div>
         </div>
 
         <div>
@@ -60,4 +63,3 @@ export default function ProductSection({ section }: { section: ProductSectionDat
     </article>
   );
 }
-

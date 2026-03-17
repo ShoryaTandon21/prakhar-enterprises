@@ -78,7 +78,7 @@ export default function Hero() {
                   <div className="rounded-2xl bg-slate-50 p-4">
                     <p className="text-xs font-semibold text-slate-700">Brands</p>
                     <p className="mt-1 text-sm text-slate-700">
-                      Tata Power Solar • Adani Solar • Exide • Luminous
+                      Adani Solar • Tata Power Solar • Luminous
                     </p>
                   </div>
                   <div className="rounded-2xl bg-slate-50 p-4">
@@ -96,4 +96,3 @@ export default function Hero() {
     </section>
   );
 }
-

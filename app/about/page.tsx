@@ -66,7 +66,7 @@ export default function AboutPage() {
                 },
                 {
                   title: "Reputed brands",
-                  description: "Tata Power Solar, Adani Solar, Exide, Luminous, and other trusted brands."
+                  description: "Adani Solar, Tata Power Solar, Exide, Luminous, Okaya, and other trusted brands."
                 },
                 {
                   title: "Reliable installation & support",
@@ -80,4 +80,3 @@ export default function AboutPage() {
     </section>
   );
 }
-
