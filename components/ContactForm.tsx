@@ -125,12 +125,19 @@ export default function ContactForm() {
       </div>
 
       <p className="mt-4 text-xs text-slate-500">
-        Or call:{" "}
+        Or call:
+        <br />
         <a className="font-semibold text-energy-blue hover:underline" href={`tel:${site.primaryPhoneE164}`}>
           {site.primaryContact.name} ({site.primaryContact.phone})
+        </a>
+        <br />
+        <a
+          className="font-semibold text-energy-blue hover:underline"
+          href={`tel:+${site.phoneCountryCode}${site.secondaryContact.phone}`}
+        >
+          {site.secondaryContact.name} ({site.secondaryContact.phone})
         </a>
       </p>
     </form>
   );
 }
-
