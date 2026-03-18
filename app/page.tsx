@@ -5,10 +5,13 @@ import Testimonials from "@/components/Testimonials";
 import Callout from "@/components/Callout";
 import { Metadata } from "next";
 import { site } from "@/lib/site";
+import WhyChoose from "@/components/WhyChoose";
+import ProcessSteps from "@/components/ProcessSteps";
+import HomeContact from "@/components/HomeContact";
 
 export const metadata: Metadata = {
   title: "Home",
-  description: site.description,
+  description: site.seoDescription,
   alternates: { canonical: "/" }
 };
 
@@ -17,10 +20,12 @@ export default function HomePage() {
     <>
       <Hero />
       <ServicesGrid />
+      <WhyChoose />
       <BrandStrip />
+      <ProcessSteps />
       <Testimonials />
       <Callout />
+      <HomeContact />
     </>
   );
 }
-

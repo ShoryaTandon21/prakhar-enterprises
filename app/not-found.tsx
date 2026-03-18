@@ -8,7 +8,7 @@ export default function NotFound() {
       <Container>
         <div className="mx-auto max-w-2xl rounded-[2rem] border border-slate-200 bg-white p-10 text-center shadow-card">
           <p className="text-xs font-semibold text-energy-blue">404</p>
-          <h1 className="mt-3 font-[var(--font-manrope)] text-3xl font-extrabold tracking-tight text-energy-ink">
+          <h1 className="mt-3 font-[var(--font-poppins)] text-3xl font-extrabold tracking-tight text-energy-ink">
             Page not found
           </h1>
           <p className="mt-4 text-sm leading-relaxed text-slate-700">
@@ -27,4 +27,3 @@ export default function NotFound() {
     </section>
   );
 }
-

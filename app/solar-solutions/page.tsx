@@ -41,7 +41,7 @@ export default function SolarSolutionsPage() {
           </div>
 
           <div>
-            <h2 className="font-[var(--font-manrope)] text-xl font-semibold text-energy-ink">
+            <h2 className="font-[var(--font-poppins)] text-xl font-semibold text-energy-ink">
               What you get with our solar service
             </h2>
             <FeatureList
@@ -101,4 +101,3 @@ export default function SolarSolutionsPage() {
     </section>
   );
 }
-

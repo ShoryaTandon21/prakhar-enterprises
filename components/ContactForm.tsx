@@ -1,42 +1,35 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Icon from "@/components/Icon";
+import { site } from "@/lib/site";
+import { buildWhatsAppLink } from "@/lib/links";
 
 type FormState = {
-  contactPerson: "Akhil Kumar" | "Anuj Tandon";
   name: string;
   phone: string;
-  email: string;
-  message: string;
+  requirement: string;
 };
 
-const initialState: FormState = {
-  contactPerson: "Akhil Kumar",
-  name: "",
-  phone: "",
-  email: "",
-  message: ""
-};
+const initialState: FormState = { name: "", phone: "", requirement: "" };
 
-function isValidEmail(value: string) {
-  if (!value) return true;
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+function digitsOnly(value: string) {
+  return value.replace(/\D/g, "");
 }
 
 export default function ContactForm() {
   const [state, setState] = useState<FormState>(initialState);
-  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
+  const phoneDigits = useMemo(() => digitsOnly(state.phone), [state.phone]);
   const canSubmit = useMemo(() => {
-    const hasRequired = state.name.trim() && state.phone.trim() && state.message.trim();
-    return Boolean(hasRequired && isValidEmail(state.email));
-  }, [state.email, state.message, state.name, state.phone]);
+    return Boolean(state.name.trim() && phoneDigits.length >= 10 && state.requirement.trim());
+  }, [phoneDigits.length, state.name, state.requirement]);
 
-  function onChange<K extends keyof FormState>(key: K, value: FormState[K]) {
-    setState((s) => ({ ...s, [key]: value }));
-  }
+  const whatsappLink = useMemo(() => {
+    const msg = `Hello, I need help with: ${state.requirement}\nName: ${state.name}\nPhone: ${state.phone}\nPlease share price and installation details.`;
+    return buildWhatsAppLink(msg);
+  }, [state.name, state.phone, state.requirement]);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,12 +37,11 @@ export default function ContactForm() {
     setError(null);
 
     if (!canSubmit) {
-      setError("Please fill Name, Phone, Message (and a valid Email if provided).");
+      setError("Please enter Name, valid Phone number, and Requirement.");
       return;
     }
 
     setSubmitted(true);
-    setState(initialState);
   }
 
   return (
@@ -58,74 +50,49 @@ export default function ContactForm() {
       className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card"
       aria-label="Contact form"
     >
-      <h2 className="font-[var(--font-manrope)] text-lg font-semibold text-energy-ink">
-        Request a Quote
-      </h2>
+      <h2 className="text-lg font-bold text-energy-ink">Contact Form</h2>
       <p className="mt-2 text-sm text-slate-700">
-        Share your requirements. We’ll get back with the best option for your budget and usage.
+        Fill details and we’ll respond quickly. For instant price, WhatsApp is fastest.
       </p>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      <div className="mt-6 grid gap-4">
         <label className="block">
-          <span className="text-sm font-medium text-slate-700">Contact Person</span>
-          <select
-            value={state.contactPerson}
-            onChange={(e) => onChange("contactPerson", e.target.value as FormState["contactPerson"])}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
-          >
-            <option value="Akhil Kumar">Akhil Kumar</option>
-            <option value="Anuj Tandon">Anuj Tandon</option>
-          </select>
-        </label>
-
-        <label className="block">
-          <span className="text-sm font-medium text-slate-700">Phone *</span>
-          <input
-            value={state.phone}
-            onChange={(e) => onChange("phone", e.target.value)}
-            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
-            placeholder="Mobile number"
-            autoComplete="tel"
-            inputMode="tel"
-            required
-          />
-        </label>
-
-        <label className="block sm:col-span-2">
           <span className="text-sm font-medium text-slate-700">Name *</span>
           <input
             value={state.name}
-            onChange={(e) => onChange("name", e.target.value)}
+            onChange={(e) => setState((s) => ({ ...s, name: e.target.value }))}
             className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
             placeholder="Your name"
             autoComplete="name"
             required
           />
         </label>
+
+        <label className="block">
+          <span className="text-sm font-medium text-slate-700">Phone *</span>
+          <input
+            value={state.phone}
+            onChange={(e) => setState((s) => ({ ...s, phone: e.target.value }))}
+            className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
+            placeholder="Mobile number"
+            autoComplete="tel"
+            inputMode="tel"
+            required
+          />
+          <p className="mt-2 text-xs text-slate-500">We will call you back on this number.</p>
+        </label>
+
+        <label className="block">
+          <span className="text-sm font-medium text-slate-700">Requirement *</span>
+          <textarea
+            value={state.requirement}
+            onChange={(e) => setState((s) => ({ ...s, requirement: e.target.value }))}
+            className="mt-2 min-h-[120px] w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
+            placeholder="Example: 3kW solar on-grid, 150Ah battery replacement, inverter setup for 2BHK..."
+            required
+          />
+        </label>
       </div>
-
-      <label className="mt-4 block">
-        <span className="text-sm font-medium text-slate-700">Email</span>
-        <input
-          value={state.email}
-          onChange={(e) => onChange("email", e.target.value)}
-          className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
-          placeholder="Optional"
-          autoComplete="email"
-          inputMode="email"
-        />
-      </label>
-
-      <label className="mt-4 block">
-        <span className="text-sm font-medium text-slate-700">Message *</span>
-        <textarea
-          value={state.message}
-          onChange={(e) => onChange("message", e.target.value)}
-          className="mt-2 min-h-[130px] w-full resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-energy-ink outline-none transition focus:border-energy-blue focus:ring-4 focus:ring-energy-blue/10"
-          placeholder="What do you need? (Inverter/Battery/Solar, load details, location, etc.)"
-          required
-        />
-      </label>
 
       {error ? (
         <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
@@ -135,20 +102,35 @@ export default function ContactForm() {
 
       {submitted ? (
         <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-          <div className="flex items-start gap-2">
-            <Icon name="badge-check" className="mt-0.5 h-5 w-5" />
-            <p>Thanks! Your request is noted. Please call us for the fastest response.</p>
-          </div>
+          Thanks! For fastest response, please call or WhatsApp us.
         </div>
       ) : null}
 
-      <button
-        type="submit"
-        disabled={!canSubmit}
-        className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-energy-blue px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-[#0A4CC0] disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        Submit
-      </button>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        <button
+          type="submit"
+          disabled={!canSubmit}
+          className="inline-flex w-full items-center justify-center rounded-xl bg-energy-blue px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:bg-[#0A4CC0] disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          Submit
+        </button>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex w-full items-center justify-center rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:opacity-95"
+        >
+          WhatsApp Now
+        </a>
+      </div>
+
+      <p className="mt-4 text-xs text-slate-500">
+        Or call:{" "}
+        <a className="font-semibold text-energy-blue hover:underline" href={`tel:${site.primaryPhoneE164}`}>
+          {site.primaryContact.name} ({site.primaryContact.phone})
+        </a>
+      </p>
     </form>
   );
 }
+

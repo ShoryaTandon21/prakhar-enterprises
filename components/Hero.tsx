@@ -1,80 +1,103 @@
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import Image from "next/image";
 import Icon from "@/components/Icon";
+import { site } from "@/lib/site";
+import { buildWhatsAppLink } from "@/lib/links";
 
 export default function Hero() {
+  const whatsapp = buildWhatsAppLink(
+    "Hello, I need inverter/battery/solar details. Please share price and installation info."
+  );
   return (
     <section className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-energy-blue/10 blur-3xl" />
-        <div className="absolute -right-24 top-10 h-72 w-72 rounded-full bg-energy-yellow/25 blur-3xl" />
+      <div className="absolute inset-0">
+        <Image
+          src="/images/solar-rooftop.jpg"
+          alt="Solar panels background"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07122A]/90 via-[#07122A]/70 to-[#07122A]/30" />
+        <div className="absolute inset-0 bg-black/25" />
       </div>
 
-      <Container className="relative py-14 sm:py-18">
+      <Container className="relative py-16 sm:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="motion-safe:animate-fade-up">
-            <p className="inline-flex items-center gap-2 rounded-full bg-energy-yellow/25 px-3 py-1 text-xs font-semibold text-energy-ink">
-              <Icon name="badge-check" className="h-4 w-4" />
-              Authorized products • Government-approved solar panels
-            </p>
+            <div className="inline-flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/15">
+                <Icon name="badge-check" className="h-4 w-4 text-energy-yellow" />
+                Genuine branded products
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/15">
+                <Icon name="sun" className="h-4 w-4 text-energy-yellow" />
+                Government-approved solar
+              </span>
+            </div>
 
-            <h1 className="mt-5 font-[var(--font-manrope)] text-4xl font-extrabold tracking-tight text-energy-ink sm:text-5xl">
-              Reliable Power Solutions for Homes & Businesses
+            <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+              Power Backup Solutions You Can Trust
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-700">
-              Prakhar Enterprises delivers inverters, batteries, vehicle batteries, and solar solutions
-              (on-grid/off-grid) with professional installation, maintenance, and customer support.
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/85">
+              Expert inverter, battery & solar installation with reliable support. Quick site visit, clean
+              fitting, and honest guidance.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact#quote" variant="primary">
-                Get a Quote
-              </Button>
-              <Button href="/products-services" variant="ghost">
-                Explore Services
-              </Button>
+              <a
+                href={`tel:${site.primaryPhoneE164}`}
+                className="inline-flex items-center justify-center rounded-xl bg-energy-yellow px-6 py-3 text-sm font-semibold text-energy-ink shadow-card transition hover:-translate-y-0.5"
+              >
+                Call Now
+              </a>
+              <a
+                href={whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5"
+              >
+                Get Instant Price on WhatsApp
+              </a>
             </div>
 
-            <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-4">
+            <div className="mt-10 grid gap-3 sm:grid-cols-3">
               {[
-                { k: "Authorized", v: "Genuine products" },
-                { k: "Solar", v: "On/Off grid" },
-                { k: "Support", v: "Reliable service" }
+                { k: "10+ Years", v: "Experience" },
+                { k: "500+ Happy", v: "Customers" },
+                { k: "Fast", v: "Installation" }
               ].map((item) => (
                 <div
                   key={item.k}
-                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-card transition-transform duration-200 hover:-translate-y-0.5"
+                  className="rounded-2xl bg-white/10 p-4 text-white ring-1 ring-white/15 backdrop-blur"
                 >
-                  <p className="text-xs font-semibold text-energy-blue">{item.k}</p>
-                  <p className="mt-1 text-sm font-medium text-slate-700">{item.v}</p>
+                  <p className="text-sm font-extrabold">{item.k}</p>
+                  <p className="mt-1 text-xs text-white/85">{item.v}</p>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-br from-energy-blue/10 via-white to-energy-yellow/20 blur-2xl" />
-            <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-card">
-              <div className="bg-gradient-to-r from-energy-blue/10 via-white to-energy-yellow/20 p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-md bg-white ring-1 ring-slate-200">
-                      <Image
-                        src="/logo.jpg"
-                        alt="Prakhar Enterprises logo"
-                        width={48}
-                        height={48}
-                        className="h-6 w-6 object-contain"
-                      />
-                    </span>
-                    <p className="text-xs font-semibold text-slate-700">Prakhar Enterprises</p>
-                  </div>
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold text-energy-blue">
-                    <span className="h-2 w-2 rounded-full bg-energy-yellow" />
-                    Energy-ready
+            <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-energy-yellow/20 blur-3xl" />
+            <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 shadow-card backdrop-blur">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg bg-white ring-1 ring-white/20">
+                    <Image
+                      src="/logo.jpg"
+                      alt="Prakhar Enterprises logo"
+                      width={56}
+                      height={56}
+                      className="h-7 w-7 object-contain"
+                    />
                   </span>
+                  <p className="text-sm font-semibold text-white">Prakhar Enterprises</p>
                 </div>
+                <span className="inline-flex items-center gap-2 text-xs font-semibold text-white/90">
+                  <span className="h-2 w-2 rounded-full bg-energy-yellow" />
+                  Energy-ready
+                </span>
               </div>
               <div className="p-6">
                 <Image
@@ -82,21 +105,16 @@ export default function Hero() {
                   alt="Solar and power solutions illustration"
                   width={920}
                   height={680}
-                  className="h-auto w-full motion-safe:animate-float"
-                  priority
+                  className="h-auto w-full"
                 />
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold text-slate-700">Brands</p>
-                    <p className="mt-1 text-sm text-slate-700">
-                      Adani Solar • Tata Power Solar • Luminous
-                    </p>
+                  <div className="rounded-2xl bg-white/10 p-4 text-white ring-1 ring-white/10">
+                    <p className="text-xs font-semibold text-white/80">Brands</p>
+                    <p className="mt-1 text-sm text-white/90">Adani • Tata Power Solar • Luminous • Microtek</p>
                   </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold text-slate-700">Services</p>
-                    <p className="mt-1 text-sm text-slate-700">
-                      Solar installation • Maintenance • Support
-                    </p>
+                  <div className="rounded-2xl bg-white/10 p-4 text-white ring-1 ring-white/10">
+                    <p className="text-xs font-semibold text-white/80">Support</p>
+                    <p className="mt-1 text-sm text-white/90">Installation • Maintenance • After-sales</p>
                   </div>
                 </div>
               </div>

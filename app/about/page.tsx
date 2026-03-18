@@ -22,7 +22,7 @@ export default function AboutPage() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card lg:col-span-2">
-            <h2 className="font-[var(--font-manrope)] text-xl font-semibold text-energy-ink">
+            <h2 className="font-[var(--font-poppins)] text-xl font-semibold text-energy-ink">
               Who we are
             </h2>
             <p className="mt-3 leading-relaxed text-slate-700">
@@ -33,14 +33,14 @@ export default function AboutPage() {
 
             <div className="mt-8 grid gap-6 md:grid-cols-2">
               <div className="rounded-2xl bg-slate-50 p-6">
-                <h3 className="font-[var(--font-manrope)] font-semibold text-energy-ink">Mission</h3>
+                <h3 className="font-[var(--font-poppins)] font-semibold text-energy-ink">Mission</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-700">
                   Deliver dependable power systems with transparent guidance, authorized products, and
                   professional installation.
                 </p>
               </div>
               <div className="rounded-2xl bg-slate-50 p-6">
-                <h3 className="font-[var(--font-manrope)] font-semibold text-energy-ink">Vision</h3>
+                <h3 className="font-[var(--font-poppins)] font-semibold text-energy-ink">Vision</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-700">
                   Enable energy independence through modern solar adoption and long-lasting backup power
                   for every customer.
@@ -50,7 +50,7 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-3xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-7 shadow-card">
-            <h2 className="font-[var(--font-manrope)] text-xl font-semibold text-energy-ink">
+            <h2 className="font-[var(--font-poppins)] text-xl font-semibold text-energy-ink">
               Why choose us
             </h2>
             <FeatureList

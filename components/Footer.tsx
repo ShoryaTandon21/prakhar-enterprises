@@ -19,7 +19,7 @@ export default function Footer() {
                   className="h-9 w-9 object-contain"
                 />
               </span>
-              <p className="font-[var(--font-manrope)] text-base font-extrabold text-energy-ink">
+              <p className="font-[var(--font-poppins)] text-base font-extrabold text-energy-ink">
                 {site.name}
               </p>
             </div>

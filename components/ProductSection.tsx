@@ -43,7 +43,7 @@ export default function ProductSection({ section }: { section: ProductSectionDat
         </div>
 
         <div>
-          <h2 className="font-[var(--font-manrope)] text-2xl font-extrabold tracking-tight text-energy-ink">
+          <h2 className="font-[var(--font-poppins)] text-2xl font-extrabold tracking-tight text-energy-ink">
             {section.title}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-700">{section.description}</p>

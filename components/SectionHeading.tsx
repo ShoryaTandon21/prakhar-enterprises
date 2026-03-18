@@ -19,11 +19,10 @@ export default function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-      <h1 className="mt-4 font-[var(--font-manrope)] text-3xl font-extrabold tracking-tight text-energy-ink sm:text-4xl">
+      <h1 className="mt-4 font-[var(--font-poppins)] text-3xl font-extrabold tracking-tight text-energy-ink sm:text-4xl">
         {title}
       </h1>
       {subtitle ? <p className="mt-4 text-base leading-relaxed text-slate-700">{subtitle}</p> : null}
     </div>
   );
 }
-

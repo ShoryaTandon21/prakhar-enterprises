@@ -27,7 +27,7 @@ export default function ServiceCard({ service, className }: { service: Service; 
         <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-energy-blue/10 text-energy-blue">
           <Icon name={service.icon} className="h-6 w-6" />
         </div>
-        <h3 className="mt-4 font-[var(--font-manrope)] text-lg font-semibold text-energy-ink">
+        <h3 className="mt-4 font-[var(--font-poppins)] text-lg font-semibold text-energy-ink">
           {service.title}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-slate-700">{service.description}</p>
@@ -39,4 +39,3 @@ export default function ServiceCard({ service, className }: { service: Service; 
     </Link>
   );
 }
-

@@ -24,7 +24,7 @@ export default function ContactPage() {
 
         <div className="mt-10 grid gap-8 lg:grid-cols-5">
           <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-card lg:col-span-2">
-            <h2 className="font-[var(--font-manrope)] text-lg font-semibold text-energy-ink">
+            <h2 className="font-[var(--font-poppins)] text-lg font-semibold text-energy-ink">
               Call us
             </h2>
 
@@ -73,4 +73,3 @@ export default function ContactPage() {
     </section>
   );
 }
-
