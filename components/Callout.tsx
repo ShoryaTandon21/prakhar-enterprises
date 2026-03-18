@@ -1,9 +1,8 @@
 import Container from "@/components/Container";
 import { site } from "@/lib/site";
-import { buildWhatsAppLink } from "@/lib/links";
+import Link from "next/link";
 
 export default function Callout() {
-  const whatsapp = buildWhatsAppLink("Hello, I want a quote for inverter/battery/solar. Please share best price.");
   return (
     <section className="py-14 sm:py-18">
       <Container>
@@ -29,14 +28,12 @@ export default function Callout() {
               >
                 Call Now
               </a>
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/whatsapp"
                 className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5"
               >
                 WhatsApp Chat
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -2,10 +2,9 @@ import Container from "@/components/Container";
 import SectionHeading from "@/components/SectionHeading";
 import ContactForm from "@/components/ContactForm";
 import { site } from "@/lib/site";
-import { buildWhatsAppLink } from "@/lib/links";
+import Link from "next/link";
 
 export default function HomeContact() {
-  const wa = buildWhatsAppLink("Hello, I need inverter/battery/solar details. Please share price and installation info.");
   return (
     <section id="contact" className="py-14 sm:py-18 scroll-mt-28">
       <Container>
@@ -37,14 +36,12 @@ export default function HomeContact() {
               >
                 Call Now
               </a>
-              <a
-                href={wa}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/whatsapp"
                 className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-card"
               >
                 WhatsApp Chat
-              </a>
+              </Link>
             </div>
 
             <div className="mt-6 rounded-2xl bg-white p-5 ring-1 ring-slate-200">
@@ -63,4 +60,3 @@ export default function HomeContact() {
     </section>
   );
 }
-

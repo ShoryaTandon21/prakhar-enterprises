@@ -5,3 +5,7 @@ export function buildWhatsAppLink(message: string) {
   return `https://wa.me/${site.whatsappDigits}?text=${text}`;
 }
 
+export function buildWhatsAppLinkTo(whatsAppDigits: string, message: string) {
+  const text = encodeURIComponent(message);
+  return `https://wa.me/${whatsAppDigits}?text=${text}`;
+}

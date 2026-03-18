@@ -30,5 +30,8 @@ export const site = {
   },
   get whatsappDigits() {
     return `${this.phoneCountryCode}${digitsOnly(this.primaryContact.phone)}`;
+  },
+  get secondaryWhatsappDigits() {
+    return `${this.phoneCountryCode}${digitsOnly(this.secondaryContact.phone)}`;
   }
 };

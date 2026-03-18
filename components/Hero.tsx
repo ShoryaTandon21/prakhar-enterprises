@@ -2,12 +2,9 @@ import Container from "@/components/Container";
 import Image from "next/image";
 import Icon from "@/components/Icon";
 import { site } from "@/lib/site";
-import { buildWhatsAppLink } from "@/lib/links";
+import Link from "next/link";
 
 export default function Hero() {
-  const whatsapp = buildWhatsAppLink(
-    "Hello, I need inverter/battery/solar details. Please share price and installation info."
-  );
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -51,14 +48,12 @@ export default function Hero() {
               >
                 Call Now
               </a>
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href="/whatsapp"
                 className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5"
               >
                 Get Instant Price on WhatsApp
-              </a>
+              </Link>
             </div>
 
             <div className="mt-10 grid gap-3 sm:grid-cols-3">

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { site } from "@/lib/site";
-import { buildWhatsAppLink } from "@/lib/links";
+import { buildWhatsAppLinkTo } from "@/lib/links";
 
 type FormState = {
   name: string;
@@ -28,7 +28,10 @@ export default function ContactForm() {
 
   const whatsappLink = useMemo(() => {
     const msg = `Hello, I need help with: ${state.requirement}\nName: ${state.name}\nPhone: ${state.phone}\nPlease share price and installation details.`;
-    return buildWhatsAppLink(msg);
+    return {
+      akhil: buildWhatsAppLinkTo(site.whatsappDigits, msg),
+      anuj: buildWhatsAppLinkTo(site.secondaryWhatsappDigits, msg)
+    };
   }, [state.name, state.phone, state.requirement]);
 
   function onSubmit(e: React.FormEvent) {
@@ -114,14 +117,24 @@ export default function ContactForm() {
         >
           Submit
         </button>
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:opacity-95"
-        >
-          WhatsApp Now
-        </a>
+        <div className="grid gap-3">
+          <a
+            href={whatsappLink.akhil}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:opacity-95"
+          >
+            WhatsApp Akhil
+          </a>
+          <a
+            href={whatsappLink.anuj}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-full items-center justify-center rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-card transition hover:opacity-95"
+          >
+            WhatsApp Anuj
+          </a>
+        </div>
       </div>
 
       <p className="mt-4 text-xs text-slate-500">
