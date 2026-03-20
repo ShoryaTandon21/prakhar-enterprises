@@ -22,12 +22,12 @@ export default function Callout() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <a
-                href={`tel:${site.primaryPhoneE164}`}
+              <Link
+                href="/call"
                 className="inline-flex items-center justify-center rounded-xl bg-energy-yellow px-6 py-3 text-sm font-semibold text-energy-ink shadow-card transition hover:-translate-y-0.5"
               >
                 Call Now
-              </a>
+              </Link>
               <Link
                 href="/whatsapp"
                 className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5"

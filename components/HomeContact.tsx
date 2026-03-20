@@ -30,12 +30,12 @@ export default function HomeContact() {
             </p>
 
             <div className="mt-6 grid gap-3">
-              <a
-                href={`tel:${site.primaryPhoneE164}`}
+              <Link
+                href="/call"
                 className="inline-flex items-center justify-center rounded-xl bg-energy-blue px-5 py-3 text-sm font-semibold text-white shadow-glow"
               >
                 Call Now
-              </a>
+              </Link>
               <Link
                 href="/whatsapp"
                 className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-card"

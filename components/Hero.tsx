@@ -42,12 +42,12 @@ export default function Hero() {
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={`tel:${site.primaryPhoneE164}`}
+              <Link
+                href="/call"
                 className="inline-flex items-center justify-center rounded-xl bg-energy-yellow px-6 py-3 text-sm font-semibold text-energy-ink shadow-card transition hover:-translate-y-0.5"
               >
                 Call Now
-              </a>
+              </Link>
               <Link
                 href="/whatsapp"
                 className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-card transition hover:-translate-y-0.5"
